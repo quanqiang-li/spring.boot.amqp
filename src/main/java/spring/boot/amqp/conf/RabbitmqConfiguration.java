@@ -81,7 +81,8 @@ public class RabbitmqConfiguration {
 
 	@Bean
 	public Binding createBinding() {
-		// 路由键是通配的key.开头
+		// 路由键是通配的key.开头;如key.hello,key.good 都是此队列绑定到交换机的路由键
+		// 如果只想把队列绑定到交换机的固定路由键,则把#替换为固定值即可
 		return BindingBuilder.bind(createQueue()).to(createTopicExchange()).with("key.#");
 	}
 }
